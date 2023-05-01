@@ -2,6 +2,7 @@
 #include "dlist.h"
 
 #include <ucontext.h>
+#include <stdbool.h>
 #include <malloc.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -11,6 +12,9 @@
 typedef struct dccthread{
     char name[DCCTHREAD_MAX_NAME_SIZE]; //Threads's name
     ucontext_t *context;
+    //bool isSleeping;
+    bool isWaiting;
+    dccthread_t *waintingFor;
 
 } dccthread_t;
 
@@ -28,8 +32,19 @@ void dccthread_init(void (*func)(int), int param){
     while(!dlist_empty(readyThreadList))
     {
         dccthread_t *nextThread = (dccthread_t*) dlist_get_index(readyThreadList, 0); // get the next in line thread
-        swapcontext(&manager, (nextThread->context));
+
+        if(nextThread->isWaiting)
+        {
+            dlist_pop_left(readyThreadList);
+            dlist_push_right(readyThreadList, nextThread);
+        }
+
+        swapcontext(&manager, nextThread->context);
         dlist_pop_left(readyThreadList);
+
+        if(nextThread->isWaiting){
+            dlist_push_right(readyThreadList, nextThread);
+        }
     }
     exit(0); 
 }
@@ -42,6 +57,8 @@ dccthread_t * dccthread_create(const char *name, void (*func)(int), int param){
         // Inicialize the thread
         dccthread_t *newThread = malloc(sizeof(dccthread_t));
         strcpy(newThread->name, name);
+        newThread->isWaiting = false;
+        newThread->waintingFor = NULL;
 
         // Inicialize the context
         ucontext_t *newContext = malloc(sizeof(ucontext_t));
@@ -82,6 +99,40 @@ const char *dccthread_name(dccthread_t *tid){
     return tid->name;
 }
 
-void dcc_thread_exit(void){
-    
+// Ends the current thread
+void dccthread_exit(void){
+    dccthread_t *currentThread = dccthread_self();
+    for(int i = 0; i < readyThreadList->count; i++)
+    {
+        dccthread_t *thread = dlist_get_index(readyThreadList, i);
+        if(thread->isWaiting && thread->waintingFor == currentThread){
+            thread->waintingFor = NULL;
+            thread->isWaiting = false;
+        }
+    }
+    free(currentThread->context->uc_stack.ss_sp);
+} // when the lat thread calls for exit the program must end
+
+// Blocks the current thread untill tid is done executing
+void dccthread_wait(dccthread_t *tid){
+    bool found = false;
+
+    // if we find the object Tid in the ready list its not done executing yet
+    for(int i = 0; i < readyThreadList->count && !found; i++)
+    {
+        dccthread_t *thread = dlist_get_index(readyThreadList, i);
+        if(thread == tid)
+        {
+            found = true;
+        }
+    }
+
+    // if we found the object Tid in the ready list, then the current thread is going to stop executing and wait fot tid to end
+    if(found)
+    {
+        dccthread_t *currentThread = dccthread_self();
+        currentThread->isWaiting = true; 
+        currentThread->waintingFor = tid;
+        swapcontext(currentThread->context, &manager);
+    }
 }

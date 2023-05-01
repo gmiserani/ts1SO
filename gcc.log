@@ -1,100 +1,12 @@
-/usr/bin/ld: /tmp/ccOSKZGp.o: in function `texit':
-/home/marialuiza/faculdade/ts1SO/tests/test7.c:9: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/ccOSKZGp.o: in function `test':
-/home/marialuiza/faculdade/ts1SO/tests/test7.c:24: undefined reference to `dccthread_wait'
-/usr/bin/ld: /home/marialuiza/faculdade/ts1SO/tests/test7.c:27: undefined reference to `dccthread_exit'
-collect2: error: ld returned 1 exit status
-/usr/bin/ld: /tmp/ccdgfXOR.o: in function `texit':
-/home/marialuiza/faculdade/ts1SO/tests/test7.c:9: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/ccdgfXOR.o: in function `test':
-/home/marialuiza/faculdade/ts1SO/tests/test7.c:24: undefined reference to `dccthread_wait'
-/usr/bin/ld: /home/marialuiza/faculdade/ts1SO/tests/test7.c:27: undefined reference to `dccthread_exit'
-collect2: error: ld returned 1 exit status
-/usr/bin/ld: /tmp/ccbtI7tk.o: in function `tyield':
-/home/marialuiza/faculdade/ts1SO/tests/test8.c:11: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/ccbtI7tk.o: in function `test':
-/home/marialuiza/faculdade/ts1SO/tests/test8.c:26: undefined reference to `dccthread_wait'
-/usr/bin/ld: /home/marialuiza/faculdade/ts1SO/tests/test8.c:29: undefined reference to `dccthread_exit'
-collect2: error: ld returned 1 exit status
-/usr/bin/ld: /tmp/cco0vVxN.o: in function `tyield':
-/home/marialuiza/faculdade/ts1SO/tests/test8.c:11: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/cco0vVxN.o: in function `test':
-/home/marialuiza/faculdade/ts1SO/tests/test8.c:26: undefined reference to `dccthread_wait'
-/usr/bin/ld: /home/marialuiza/faculdade/ts1SO/tests/test8.c:29: undefined reference to `dccthread_exit'
-collect2: error: ld returned 1 exit status
-/usr/bin/ld: /tmp/ccha44pd.o: in function `tloop':
-/home/marialuiza/faculdade/ts1SO/tests/test9.c:13: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/ccha44pd.o: in function `test':
-/home/marialuiza/faculdade/ts1SO/tests/test9.c:24: undefined reference to `dccthread_wait'
-/usr/bin/ld: /home/marialuiza/faculdade/ts1SO/tests/test9.c:25: undefined reference to `dccthread_exit'
-collect2: error: ld returned 1 exit status
-/usr/bin/ld: /tmp/ccBBQbMI.o: in function `tloop':
-/home/marialuiza/faculdade/ts1SO/tests/test9.c:13: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/ccBBQbMI.o: in function `test':
-/home/marialuiza/faculdade/ts1SO/tests/test9.c:24: undefined reference to `dccthread_wait'
-/usr/bin/ld: /home/marialuiza/faculdade/ts1SO/tests/test9.c:25: undefined reference to `dccthread_exit'
-collect2: error: ld returned 1 exit status
-/usr/bin/ld: /tmp/cc28pdC7.o: in function `tloop':
-/home/marialuiza/faculdade/ts1SO/tests/test9.c:13: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/cc28pdC7.o: in function `test':
-/home/marialuiza/faculdade/ts1SO/tests/test9.c:24: undefined reference to `dccthread_wait'
-/usr/bin/ld: /home/marialuiza/faculdade/ts1SO/tests/test9.c:25: undefined reference to `dccthread_exit'
-collect2: error: ld returned 1 exit status
-/usr/bin/ld: /tmp/cc8cZY6A.o: in function `tloop':
-/home/marialuiza/faculdade/ts1SO/tests/test9.c:13: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/cc8cZY6A.o: in function `test':
-/home/marialuiza/faculdade/ts1SO/tests/test9.c:24: undefined reference to `dccthread_wait'
-/usr/bin/ld: /home/marialuiza/faculdade/ts1SO/tests/test9.c:25: undefined reference to `dccthread_exit'
-collect2: error: ld returned 1 exit status
-/usr/bin/ld: /tmp/ccJ8XFs2.o: in function `tloop':
-/home/marialuiza/faculdade/ts1SO/tests/test10.c:12: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/ccJ8XFs2.o: in function `test':
-/home/marialuiza/faculdade/ts1SO/tests/test10.c:22: undefined reference to `dccthread_wait'
-/usr/bin/ld: /home/marialuiza/faculdade/ts1SO/tests/test10.c:23: undefined reference to `dccthread_exit'
-collect2: error: ld returned 1 exit status
-/usr/bin/ld: /tmp/ccj2Cadw.o: in function `tloop':
-/home/marialuiza/faculdade/ts1SO/tests/test10.c:12: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/ccj2Cadw.o: in function `test':
-/home/marialuiza/faculdade/ts1SO/tests/test10.c:22: undefined reference to `dccthread_wait'
-/usr/bin/ld: /home/marialuiza/faculdade/ts1SO/tests/test10.c:23: undefined reference to `dccthread_exit'
-collect2: error: ld returned 1 exit status
-/usr/bin/ld: /tmp/ccek4hsY.o: in function `tloop':
-/home/marialuiza/faculdade/ts1SO/tests/test10.c:12: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/ccek4hsY.o: in function `test':
-/home/marialuiza/faculdade/ts1SO/tests/test10.c:22: undefined reference to `dccthread_wait'
-/usr/bin/ld: /home/marialuiza/faculdade/ts1SO/tests/test10.c:23: undefined reference to `dccthread_exit'
-collect2: error: ld returned 1 exit status
-/usr/bin/ld: /tmp/ccBYX9mq.o: in function `tloop':
-/home/marialuiza/faculdade/ts1SO/tests/test10.c:12: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/ccBYX9mq.o: in function `test':
-/home/marialuiza/faculdade/ts1SO/tests/test10.c:22: undefined reference to `dccthread_wait'
-/usr/bin/ld: /home/marialuiza/faculdade/ts1SO/tests/test10.c:23: undefined reference to `dccthread_exit'
-collect2: error: ld returned 1 exit status
-/usr/bin/ld: /tmp/cc69HsBQ.o: in function `tsleep':
+/usr/bin/ld: /tmp/ccwnBLza.o: in function `tsleep':
 /home/marialuiza/faculdade/ts1SO/tests/test11.c:11: undefined reference to `dccthread_sleep'
-/usr/bin/ld: /home/marialuiza/faculdade/ts1SO/tests/test11.c:13: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/cc69HsBQ.o: in function `test':
-/home/marialuiza/faculdade/ts1SO/tests/test11.c:26: undefined reference to `dccthread_wait'
-/usr/bin/ld: /home/marialuiza/faculdade/ts1SO/tests/test11.c:29: undefined reference to `dccthread_exit'
 collect2: error: ld returned 1 exit status
-/usr/bin/ld: /tmp/ccVITs5g.o: in function `tsleep':
+/usr/bin/ld: /tmp/ccBGqWjB.o: in function `tsleep':
 /home/marialuiza/faculdade/ts1SO/tests/test11.c:11: undefined reference to `dccthread_sleep'
-/usr/bin/ld: /home/marialuiza/faculdade/ts1SO/tests/test11.c:13: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/ccVITs5g.o: in function `test':
-/home/marialuiza/faculdade/ts1SO/tests/test11.c:26: undefined reference to `dccthread_wait'
-/usr/bin/ld: /home/marialuiza/faculdade/ts1SO/tests/test11.c:29: undefined reference to `dccthread_exit'
 collect2: error: ld returned 1 exit status
-/usr/bin/ld: /tmp/ccOyh1ML.o: in function `tsleep':
+/usr/bin/ld: /tmp/ccXOT1M2.o: in function `tsleep':
 /home/marialuiza/faculdade/ts1SO/tests/test12.c:11: undefined reference to `dccthread_sleep'
-/usr/bin/ld: /home/marialuiza/faculdade/ts1SO/tests/test12.c:13: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/ccOyh1ML.o: in function `test':
-/home/marialuiza/faculdade/ts1SO/tests/test12.c:30: undefined reference to `dccthread_wait'
-/usr/bin/ld: /home/marialuiza/faculdade/ts1SO/tests/test12.c:33: undefined reference to `dccthread_exit'
 collect2: error: ld returned 1 exit status
-/usr/bin/ld: /tmp/cck4UEqc.o: in function `tsleep':
+/usr/bin/ld: /tmp/ccVYAtVu.o: in function `tsleep':
 /home/marialuiza/faculdade/ts1SO/tests/test12.c:11: undefined reference to `dccthread_sleep'
-/usr/bin/ld: /home/marialuiza/faculdade/ts1SO/tests/test12.c:13: undefined reference to `dccthread_exit'
-/usr/bin/ld: /tmp/cck4UEqc.o: in function `test':
-/home/marialuiza/faculdade/ts1SO/tests/test12.c:30: undefined reference to `dccthread_wait'
-/usr/bin/ld: /home/marialuiza/faculdade/ts1SO/tests/test12.c:33: undefined reference to `dccthread_exit'
 collect2: error: ld returned 1 exit status
