@@ -10,6 +10,12 @@
 #include <signal.h>
 #include <time.h>
 
+#define TIMER_INTERVAL_SEC 0
+#define TIMER_INTERVAL_NSEC 10000000
+
+
+sigset_t mask;
+
 //Thread structure
 typedef struct dccthread{
     char name[DCCTHREAD_MAX_NAME_SIZE]; //Threads's name
@@ -53,10 +59,10 @@ void dccthread_init(void (*func)(int), int param){
   timer_create(CLOCK_PROCESS_CPUTIME_ID, &se, &timer_id);
   timer_settime(timer_id, 0, &ts, NULL);
 
-  sigemptyset(&sigmask);
-  sigaddset(&sigmask, SIGRTMIN);
+  sigemptyset(&mask);
+  sigaddset(&mask, SIGRTMIN);
 
-  sigprocmask(SIG_BLOCK, &sigmask, NULL);
+  sigprocmask(SIG_BLOCK, &mask, NULL);
     // 3 -- Execute the main thread
     while(!dlist_empty(readyThreadList))
     {
