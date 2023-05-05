@@ -20,8 +20,9 @@ sigset_t mask;
 typedef struct dccthread{
     char name[DCCTHREAD_MAX_NAME_SIZE]; //Threads's name
     ucontext_t *context;
-    //bool isSleeping;
+    bool isSleeping;
     bool isWaiting;
+    bool isYielded;
     dccthread_t *waintingFor;
 
 } dccthread_t;
@@ -68,7 +69,7 @@ void dccthread_init(void (*func)(int), int param){
     {
         dccthread_t *nextThread = (dccthread_t*) dlist_get_index(readyThreadList, 0); // get the next in line thread
 
-        if(nextThread->isWaiting)
+        if(nextThread->isWaiting || nextThread->isSleeping)
         {
             dlist_pop_left(readyThreadList);
             dlist_push_right(readyThreadList, nextThread);
@@ -77,7 +78,7 @@ void dccthread_init(void (*func)(int), int param){
         swapcontext(&manager, nextThread->context);
         dlist_pop_left(readyThreadList);
 
-        if(nextThread->isWaiting){
+        if(nextThread->isWaiting || nextThread->isSleeping){
             dlist_push_right(readyThreadList, nextThread);
         }
     }
@@ -94,6 +95,8 @@ dccthread_t * dccthread_create(const char *name, void (*func)(int), int param){
         strcpy(newThread->name, name);
         newThread->isWaiting = false;
         newThread->waintingFor = NULL;
+        newThread->isSleeping = false;
+        newThread->isYielded = false;
 
         // Inicialize the context
         ucontext_t *newContext = malloc(sizeof(ucontext_t));
@@ -192,5 +195,47 @@ void dccthread_wait(dccthread_t *tid){
         swapcontext(currentThread->context, &manager);
     }
 
+    sigprocmask(SIG_UNBLOCK, &mask, NULL);
+}
+
+void dccthread_wakeup_handler(int sig, siginfo_t *si, void *uc) {
+    sigprocmask(SIG_BLOCK, &mask, NULL);
+    int index;
+    for(index = 0; index < readyThreadList->count; index++) {
+        dccthread_t *thread = dlist_get_index(doneQueue, index);
+        if(thread->context == uc) {
+            thread->isSleeping = true;
+            break;
+        }
+    }
+    sigprocmask(SIG_UNBLOCK, &mask, NULL);
+}
+
+
+void dccthread_sleep(struct timespec ts){
+    sigprocmask(SIG_BLOCK, &mask, NULL);
+
+    struct sigaction signal_action;
+    struct sigevent signal_event;
+    struct itimerspec interval_ts;
+    timer_t sleep_timerid;
+
+    dccthread_t *currThread = dccthread_self();
+    currThread->isSleeping = true;
+    
+    signal_action.sa_flags = SA_SIGINFO;
+    signal_action.sa_sigaction = dccthread_wakeup_handler;
+    sigaction(SIGRTMIN+1, &signal_action, NULL);
+
+    signal_event.sigev_notify = SIGEV_SIGNAL;
+    signal_event.sigev_signo = SIGRTMIN+1;
+
+    interval_ts.it_value = ts;
+    
+    timer_create(CLOCK_PROCESS_CPUTIME_ID, &signal_event, &sleep_timerid);
+    timer_settime(sleep_timerid, 0, &interval_ts, NULL);
+    
+    swapcontext(currThread->context, &manager);
+    
     sigprocmask(SIG_UNBLOCK, &mask, NULL);
 }
